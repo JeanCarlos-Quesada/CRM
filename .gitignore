@@ -1,0 +1,15 @@
+CRM/AppCRM/bin/
+CRM/AppCRM/obj/
+CRM/BS/bin/
+CRM/BS/obj/
+CRM/DAL/bin/
+CRM/DAL/obj/
+CRM/DO/bin/
+CRM/DO/obj/
+CRM/Maps/bin/
+CRM/Maps/obj/
+CRM/packages/
+CRM/SolutionContext/obj/
+CRM/SolutionContext/bin/
+CRM/Repository/obj/
+CRM/Repository/bin/

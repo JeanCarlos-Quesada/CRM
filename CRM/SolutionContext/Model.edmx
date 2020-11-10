@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="clientId" />
+          </Key>
+          <Property Name="clientId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clientName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="registerDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="employeeId" />
+          </Key>
+          <Property Name="employeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="registerDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="keys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_Key" Type="varbinary(max)" />
+          <Property Name="_IV" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CRM.dbo.orderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="orderDetails">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="orderId" Type="bigint" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_CRM.dbo.orderFollows' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="orderFollows">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="comment" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="registerDate" />
+          </Key>
+          <Property Name="orderId" Type="bigint" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="registerDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clintID" Type="bigint" Nullable="false" />
+          <Property Name="employeeId" Type="bigint" Nullable="false" />
+          <Property Name="registerDate" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="inventory" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rols">
+          <Key>
+            <PropertyRef Name="rolId" />
+          </Key>
+          <Property Name="rolId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="bigint" Nullable="false" />
+          <Property Name="userName" Type="varbinary(max)" Nullable="false" />
+          <Property Name="userPassword" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_X_rols">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolId" Type="tinyint" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__orderDeta__order__3A81B327">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orderDeta__produ__3B75D760">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orderFoll__order__3D5E1FD2">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="orderFollows" Type="Self.orderFollows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderFollows">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__clintID__37A5467C">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="clientId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="clintID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__employee__38996AB5">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__catego__34C8D9D1">
+          <End Role="categorys" Type="Self.categorys" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__employeeI__286302EC">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users_X_r__rolId__2D27B809">
+          <End Role="rols" Type="Self.rols" Multiplicity="1" />
+          <End Role="users_X_rols" Type="Self.users_X_rols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rols">
+              <PropertyRef Name="rolId" />
+            </Principal>
+            <Dependent Role="users_X_rols">
+              <PropertyRef Name="rolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users_X_r__userI__2E1BDC42">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_X_rols" Type="Self.users_X_rols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="users_X_rols">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_CRMModelStoreContainer">
+          <EntitySet Name="categorys" EntityType="Self.categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="keys" EntityType="Self.keys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rols" EntityType="Self.rols" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_X_rols" EntityType="Self.users_X_rols" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderDetails" EntityType="Self.orderDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [orderDetails].[orderId] AS [orderId], 
+    [orderDetails].[productId] AS [productId]
+    FROM [dbo].[orderDetails] AS [orderDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="orderFollows" EntityType="Self.orderFollows" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [orderFollows].[orderId] AS [orderId], 
+    [orderFollows].[comment] AS [comment], 
+    [orderFollows].[number] AS [number], 
+    [orderFollows].[registerDate] AS [registerDate]
+    FROM [dbo].[orderFollows] AS [orderFollows]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__orderDeta__order__3A81B327" Association="Self.FK__orderDeta__order__3A81B327">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orderDeta__produ__3B75D760" Association="Self.FK__orderDeta__produ__3B75D760">
+            <End Role="products" EntitySet="products" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orderFoll__order__3D5E1FD2" Association="Self.FK__orderFoll__order__3D5E1FD2">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderFollows" EntitySet="orderFollows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__clintID__37A5467C" Association="Self.FK__orders__clintID__37A5467C">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__employee__38996AB5" Association="Self.FK__orders__employee__38996AB5">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__catego__34C8D9D1" Association="Self.FK__products__catego__34C8D9D1">
+            <End Role="categorys" EntitySet="categorys" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__employeeI__286302EC" Association="Self.FK__users__employeeI__286302EC">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users_X_r__rolId__2D27B809" Association="Self.FK__users_X_r__rolId__2D27B809">
+            <End Role="rols" EntitySet="rols" />
+            <End Role="users_X_rols" EntitySet="users_X_rols" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users_X_r__userI__2E1BDC42" Association="Self.FK__users_X_r__userI__2E1BDC42">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_X_rols" EntitySet="users_X_rols" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK__products__catego__34C8D9D1" FromRole="categorys" ToRole="products" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="clientId" />
+          </Key>
+          <Property Name="clientId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__clintID__37A5467C" FromRole="clients" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeId" />
+          </Key>
+          <Property Name="employeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__employee__38996AB5" FromRole="employees" ToRole="orders" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__employeeI__286302EC" FromRole="employees" ToRole="users" />
+        </EntityType>
+        <EntityType Name="key">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Key" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="C_IV" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clintID" Type="Int64" Nullable="false" />
+          <Property Name="employeeId" Type="Int64" Nullable="false" />
+          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="client" Relationship="Self.FK__orders__clintID__37A5467C" FromRole="orders" ToRole="clients" />
+          <NavigationProperty Name="employee" Relationship="Self.FK__orders__employee__38996AB5" FromRole="orders" ToRole="employees" />
+          <NavigationProperty Name="orderFollows" Relationship="Self.FK__orderFoll__order__3D5E1FD2" FromRole="orders" ToRole="orderFollows" />
+          <NavigationProperty Name="products" Relationship="Self.orderDetails" FromRole="orders" ToRole="products" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inventory" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK__products__catego__34C8D9D1" FromRole="products" ToRole="categorys" />
+          <NavigationProperty Name="orders" Relationship="Self.orderDetails" FromRole="products" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="rolId" />
+          </Key>
+          <Property Name="rolId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users_X_rols" Relationship="Self.FK__users_X_r__rolId__2D27B809" FromRole="rols" ToRole="users_X_rols" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int64" Nullable="false" />
+          <Property Name="userName" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="userPassword" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.FK__users__employeeI__286302EC" FromRole="users" ToRole="employees" />
+          <NavigationProperty Name="users_X_rols" Relationship="Self.FK__users_X_r__userI__2E1BDC42" FromRole="users" ToRole="users_X_rols" />
+        </EntityType>
+        <EntityType Name="users_X_rols">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolId" Type="Byte" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="rol" Relationship="Self.FK__users_X_r__rolId__2D27B809" FromRole="users_X_rols" ToRole="rols" />
+          <NavigationProperty Name="user" Relationship="Self.FK__users_X_r__userI__2E1BDC42" FromRole="users_X_rols" ToRole="users" />
+        </EntityType>
+        <EntityType Name="orderFollow">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="comment" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="registerDate" />
+          </Key>
+          <Property Name="orderId" Type="Int64" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="order" Relationship="Self.FK__orderFoll__order__3D5E1FD2" FromRole="orderFollows" ToRole="orders" />
+        </EntityType>
+        <Association Name="FK__products__catego__34C8D9D1">
+          <End Role="categorys" Type="Self.category" Multiplicity="1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__clintID__37A5467C">
+          <End Role="clients" Type="Self.client" Multiplicity="1" />
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="clientId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="clintID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__employee__38996AB5">
+          <End Role="employees" Type="Self.employee" Multiplicity="1" />
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__employeeI__286302EC">
+          <End Role="employees" Type="Self.employee" Multiplicity="1" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orderFoll__order__3D5E1FD2">
+          <End Role="orders" Type="Self.order" Multiplicity="1" />
+          <End Role="orderFollows" Type="Self.orderFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderFollows">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users_X_r__rolId__2D27B809">
+          <End Role="rols" Type="Self.rol" Multiplicity="1" />
+          <End Role="users_X_rols" Type="Self.users_X_rols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rols">
+              <PropertyRef Name="rolId" />
+            </Principal>
+            <Dependent Role="users_X_rols">
+              <PropertyRef Name="rolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users_X_r__userI__2E1BDC42">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="users_X_rols" Type="Self.users_X_rols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="users_X_rols">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetails">
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DB_CRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorys" EntityType="Self.category" />
+          <EntitySet Name="clients" EntityType="Self.client" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="keys" EntityType="Self.key" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="rols" EntityType="Self.rol" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="users_X_rols" EntityType="Self.users_X_rols" />
+          <EntitySet Name="orderFollows" EntityType="Self.orderFollow" />
+          <AssociationSet Name="FK__products__catego__34C8D9D1" Association="Self.FK__products__catego__34C8D9D1">
+            <End Role="categorys" EntitySet="categorys" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__clintID__37A5467C" Association="Self.FK__orders__clintID__37A5467C">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__employee__38996AB5" Association="Self.FK__orders__employee__38996AB5">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__employeeI__286302EC" Association="Self.FK__users__employeeI__286302EC">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orderFoll__order__3D5E1FD2" Association="Self.FK__orderFoll__order__3D5E1FD2">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderFollows" EntitySet="orderFollows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users_X_r__rolId__2D27B809" Association="Self.FK__users_X_r__rolId__2D27B809">
+            <End Role="rols" EntitySet="rols" />
+            <End Role="users_X_rols" EntitySet="users_X_rols" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users_X_r__userI__2E1BDC42" Association="Self.FK__users_X_r__userI__2E1BDC42">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_X_rols" EntitySet="users_X_rols" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetails" Association="Self.orderDetails">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_CRMModelStoreContainer" CdmEntityContainer="DB_CRMEntities">
+          <EntitySetMapping Name="categorys">
+            <EntityTypeMapping TypeName="DB_CRMModel.category">
+              <MappingFragment StoreEntitySet="categorys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="DB_CRMModel.client">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="clientName" ColumnName="clientName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="DB_CRMModel.employee">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="keys">
+            <EntityTypeMapping TypeName="DB_CRMModel.key">
+              <MappingFragment StoreEntitySet="keys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_Key" ColumnName="_Key" />
+                <ScalarProperty Name="C_IV" ColumnName="_IV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="DB_CRMModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="clintID" ColumnName="clintID" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="DB_CRMModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rols">
+            <EntityTypeMapping TypeName="DB_CRMModel.rol">
+              <MappingFragment StoreEntitySet="rols">
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="rolName" ColumnName="rolName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DB_CRMModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_X_rols">
+            <EntityTypeMapping TypeName="DB_CRMModel.users_X_rols">
+              <MappingFragment StoreEntitySet="users_X_rols">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderFollows">
+            <EntityTypeMapping TypeName="DB_CRMModel.orderFollow">
+              <MappingFragment StoreEntitySet="orderFollows">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="orderDetails" TypeName="DB_CRMModel.orderDetails" StoreEntitySet="orderDetails">
+            <EndProperty Name="orders">
+              <ScalarProperty Name="orderId" ColumnName="orderId" />
+            </EndProperty>
+            <EndProperty Name="products">
+              <ScalarProperty Name="productId" ColumnName="productId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

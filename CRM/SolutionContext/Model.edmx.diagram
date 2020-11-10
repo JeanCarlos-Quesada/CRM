@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="913bb59903ff4510a2bc0686bc4e8a16" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_CRMModel.category" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.employee" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.key" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.order" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.product" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.rol" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.user" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.users_X_rols" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.orderFollow" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="DB_CRMModel.FK__products__catego__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__orders__clintID__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__orders__employee__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__users__employeeI__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__orderFoll__order__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__users_X_r__rolId__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.FK__users_X_r__userI__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CRMModel.orderDetails" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
