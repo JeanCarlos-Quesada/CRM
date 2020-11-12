@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="913bb59903ff4510a2bc0686bc4e8a16" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_CRMModel.category" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="39bb29c5c78d477dad58ac130b67e1cd" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_CRMModel.category" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CRMModel.client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.employee" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.employee" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CRMModel.key" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.order" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.product" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.rol" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.user" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.order" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.product" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.rol" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.user" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CRMModel.users_X_rols" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CRMModel.orderFollow" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CRMModel.orderFollow" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="DB_CRMModel.FK__products__catego__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="DB_CRMModel.FK__orders__clintID__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="DB_CRMModel.FK__orders__employee__38996AB5" ManuallyRouted="false" />

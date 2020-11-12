@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{208D20A2-5053-4418-93A2-3E5FFDD6013E}</ProjectGuid>
+    <ProjectGuid>{BD53EA12-4E3F-47AF-9AA2-44173806AE7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BS</RootNamespace>
@@ -62,21 +62,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL.EF\DAL.EF.csproj">
+      <Project>{95f4ea38-10c2-4e91-b533-bcd20f2bd15f}</Project>
+      <Name>DAL.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{4f0948db-d4d5-4d9e-b797-b4b45a6616bc}</Project>
+      <Project>{67fa6707-c190-4d5b-b775-163061214add}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DO\DO.csproj">
       <Project>{f2a142c7-97af-40c1-adde-c0dffe3fbdf9}</Project>
       <Name>DO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Maps\Maps.csproj">
-      <Project>{e0d0decb-c9da-4f9c-b8fc-ad1fb1b41119}</Project>
-      <Name>Maps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolutionContext\DAL.EF.csproj">
-      <Project>{a643bb25-2033-4189-bf44-f4e0d3aa28e4}</Project>
-      <Name>DAL.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

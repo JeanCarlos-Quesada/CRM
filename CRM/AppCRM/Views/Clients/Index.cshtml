@@ -1,0 +1,57 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model  PagedList.IPagedList<DO.Objects.clients>
+@{ 
+    ViewBag.Title = "Index";
+    String search = ViewBag.Search;
+}
+
+<div class="container-main shadow">
+    <div class="ml-4 mr-4">
+        <h3 class="titleView">List of Clients</h3>
+        @using (Html.BeginForm())
+        {
+            <div class="input-group mb-3 inputSearch">
+                <input type="text" name="Search" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Go</button>
+                    <a href="/Clients/Index" class="btn btn-primary ml-1"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+        }
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-blue">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Register Date</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Inactive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.clientId</th>
+                            <td>@item.clientName</td>
+                            <td>@item.phone</td>
+                            <td>@item.email</td>
+                            <td>@item.gender</td>
+                            <td>@item.registerDate.ToString("MM/dd/yyyy")</td>
+                            <td><a href="/Clients/Update?id=@item.clientId"><i class="fas fa-user-edit tableIcon"></i></a></td>
+                            <td><a href="/Clients/InActive?id=@item.clientId"><i class="fas fa-user-minus tableIcon"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { search, page }))
+        </div>
+        @Html.ActionLink("Inactive clients", "InActives", "Client", new { @class = "btn btn-primary aButton" })
+    </div>
+</div>

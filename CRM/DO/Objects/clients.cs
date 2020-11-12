@@ -14,6 +14,7 @@ namespace DO.Objects
         public string email { get; set; }
         public string gender { get; set; }
         public System.DateTime registerDate { get; set; }
+        public bool isActive { get; set; }
 
         //public virtual ICollection<order> orders { get; set; }
     }

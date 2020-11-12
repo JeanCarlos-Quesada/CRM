@@ -59,15 +59,12 @@ namespace Repository
 
 		public void Update(Entity entity)
 		{
-			try
+			if (dbContext.Entry<Entity>(entity).State == EntityState.Detached)
 			{
 				dbContext.Set<Entity>().Attach(entity);
-				Commit();
 			}
-			catch (Exception ex)
-			{
-				dbContext.Database.CurrentTransaction.Rollback();
-			}
+			dbContext.Entry<Entity>(entity).State = EntityState.Modified;
+			Commit();
 		}
 
 		public void Delete(Entity entity)

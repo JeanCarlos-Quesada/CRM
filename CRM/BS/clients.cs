@@ -29,6 +29,22 @@ namespace BS
 			return _ent;
 		}
 
+		public IEnumerable<ent.clients> GetAll(Boolean isActive)
+		{
+			var entity = _dal.GetAll(isActive);
+			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.clients>>(entity);
+
+			return _ent;
+		}
+
+		public IEnumerable<ent.clients> GetByNameOrId(String search, Boolean isActive)
+		{
+			var entity = _dal.GetByNameOrId(search, isActive);
+			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.clients>>(entity);
+
+			return _ent;
+		}
+
 		public ent.clients GetOneById(long id)
 		{
 			var data = _dal.GetOneById(id);
@@ -40,13 +56,13 @@ namespace BS
 		public void Insert(ent.clients entity)
 		{
 			var _ent = Mapper.Map<ent.clients, data.client>(entity);
-			_dal.Delete(_ent);
+			_dal.Insert(_ent);
 		}
 
 		public void Update(ent.clients entity)
 		{
 			var _ent = Mapper.Map<ent.clients, data.client>(entity);
-			_dal.Delete(_ent);
+			_dal.Update(_ent);
 		}
 	}
 }
