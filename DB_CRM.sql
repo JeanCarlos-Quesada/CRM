@@ -8,7 +8,7 @@ create table clients(
 	phone varchar(15) not null,
 	email varchar(50),
 	gender char, -- M(Male) F(Female) N(No Definite)
-	registerDate Datetime not null,
+	registerDate Date not null,
 	isActive bit not null
 );
 
@@ -18,7 +18,7 @@ create table employees(
 	phone varchar(15) not null,
 	email varchar(50) not null,
 	gender char, -- M(Male) F(Female) N(No Definite)
-	registerDate Datetime not null,
+	registerDate Date not null,
 	isActive bit not null
 );
 
@@ -65,7 +65,7 @@ create table orders(
 	clintID bigint foreign key references clients(clientId) not null,
 	employeeId bigint foreign key references employees(employeeId) not null,
 	registerDate DateTime not null,
-	status bit not null, --0(close) 1(open)
+	status tinyint not null, --0(cancel) 1(open) 2(close)
 );
 
 create table orderDetails(
@@ -79,3 +79,5 @@ create table orderFollows(
 	number int not null,
 	registerDate DateTime not null
 );
+
+insert into rols values('Administrator'),('Seller');

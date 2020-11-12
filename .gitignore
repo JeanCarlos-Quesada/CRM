@@ -15,3 +15,6 @@ CRM/Repository/obj/
 CRM/Repository/bin/
 CRM/DAL.EF/obj/
 CRM/DAL.EF/bin/
+CreateKeys/CreateKeys/obj/
+CreateKeys/CreateKeys/bin/
+CreateKeys/packages/
