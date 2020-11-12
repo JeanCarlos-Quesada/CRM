@@ -13,3 +13,5 @@ CRM/SolutionContext/obj/
 CRM/SolutionContext/bin/
 CRM/Repository/obj/
 CRM/Repository/bin/
+CRM/DAL.EF/obj/
+CRM/DAL.EF/bin/
