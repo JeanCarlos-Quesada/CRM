@@ -16,7 +16,7 @@ namespace AppCRM.Controllers
 
         public ActionResult Index(String search, int page = 1)
         {
-            IEnumerable<data.clients> listClients = null;
+            IEnumerable<data.client> listClients = null;
 
             if (search == "" || search == null)
             {
@@ -29,13 +29,13 @@ namespace AppCRM.Controllers
 
             ViewBag.Search = search;
 
-            PagedList<data.clients> model = new PagedList<data.clients>(listClients, page, 8);
+            PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
             return View(model);
         }
 
         public ActionResult InActives(String search, int page = 1)
         {
-            IEnumerable<data.clients> listClients = null;
+            IEnumerable<data.client> listClients = null;
 
             if (search == "" || search == null)
             {
@@ -48,7 +48,7 @@ namespace AppCRM.Controllers
 
             ViewBag.Search = search;
 
-            PagedList<data.clients> model = new PagedList<data.clients>(listClients, page, 8);
+            PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
             return View(model);
         }
 
@@ -58,7 +58,7 @@ namespace AppCRM.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(data.clients client, String countryCode)
+        public ActionResult Register(data.client client, String countryCode)
         {
             client.phone = "+" + countryCode + client.phone;
             client.registerDate = DateTime.Now;
@@ -74,7 +74,7 @@ namespace AppCRM.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(data.clients client, long id)
+        public ActionResult Update(data.client client, long id)
         {
             client.clientId = id;
             client.isActive = true;
@@ -86,7 +86,7 @@ namespace AppCRM.Controllers
         {
             //create new BS.clients, because when find one by id I can't update the entity
             clients _newClients = new clients();
-            data.clients client = _newClients.GetOneById(id);
+            data.client client = _newClients.GetOneById(id);
 
             client.isActive = false;
             _clients.Update(client);
@@ -98,7 +98,7 @@ namespace AppCRM.Controllers
 
             //create new BS.clients, because when find one by id I can't update the entity
             clients _newClients = new clients();
-            data.clients client = _newClients.GetOneById(id);
+            data.client client = _newClients.GetOneById(id);
 
             client.isActive = true;
             _clients.Update(client);

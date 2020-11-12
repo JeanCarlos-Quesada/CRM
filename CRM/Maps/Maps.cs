@@ -15,8 +15,11 @@ namespace Maps
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<ent.client, data.clients>();
-                cfg.CreateMap<data.clients, ent.client>();
+                cfg.CreateMap<ent.client, data.client>();
+                cfg.CreateMap<data.client, ent.client>();
+
+                cfg.CreateMap<ent.employee, data.employee>();
+                cfg.CreateMap<data.employee, ent.employee>();
             });
         }
     }

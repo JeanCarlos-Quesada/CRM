@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DO.Objects
 {
-	public class clients
+	public class employee
 	{
-        public long clientId { get; set; }
-        public string clientName { get; set; }
+        public long employeeId { get; set; }
+        public string employeeName { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string gender { get; set; }
@@ -17,5 +17,6 @@ namespace DO.Objects
         public bool isActive { get; set; }
 
         //public virtual ICollection<order> orders { get; set; }
+        //public virtual ICollection<user> users { get; set; }
     }
 }

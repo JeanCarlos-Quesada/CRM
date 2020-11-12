@@ -11,57 +11,57 @@ using ent = DO.Objects;
 
 namespace BS
 {
-	public class clients : ICRUD<ent.clients>
+	public class clients : ICRUD<ent.client>
 	{
 		private DAL.clients _dal = new DAL.clients();
 
-		public void Delete(ent.clients entity)
+		public void Delete(ent.client entity)
 		{
-			var _ent = Mapper.Map<ent.clients, data.client>(entity);
+			var _ent = Mapper.Map<ent.client, data.client>(entity);
 			_dal.Delete(_ent);
 		}
 
-		public IEnumerable<ent.clients> GetAll()
+		public IEnumerable<ent.client> GetAll()
 		{
 			var entity = _dal.GetAll();
-			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.clients>>(entity);
+			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.client>>(entity);
 
 			return _ent;
 		}
 
-		public IEnumerable<ent.clients> GetAll(Boolean isActive)
+		public IEnumerable<ent.client> GetAll(Boolean isActive)
 		{
 			var entity = _dal.GetAll(isActive);
-			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.clients>>(entity);
+			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.client>>(entity);
 
 			return _ent;
 		}
 
-		public IEnumerable<ent.clients> GetByNameOrId(String search, Boolean isActive)
+		public IEnumerable<ent.client> GetByNameOrId(String search, Boolean isActive)
 		{
 			var entity = _dal.GetByNameOrId(search, isActive);
-			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.clients>>(entity);
+			var _ent = Mapper.Map<IEnumerable<data.client>, IEnumerable<ent.client>>(entity);
 
 			return _ent;
 		}
 
-		public ent.clients GetOneById(long id)
+		public ent.client GetOneById(long id)
 		{
 			var data = _dal.GetOneById(id);
-			var _ent = Mapper.Map<data.client, ent.clients>(data);
+			var _ent = Mapper.Map<data.client, ent.client>(data);
 
 			return _ent;
 		}
 
-		public void Insert(ent.clients entity)
+		public void Insert(ent.client entity)
 		{
-			var _ent = Mapper.Map<ent.clients, data.client>(entity);
+			var _ent = Mapper.Map<ent.client, data.client>(entity);
 			_dal.Insert(_ent);
 		}
 
-		public void Update(ent.clients entity)
+		public void Update(ent.client entity)
 		{
-			var _ent = Mapper.Map<ent.clients, data.client>(entity);
+			var _ent = Mapper.Map<ent.client, data.client>(entity);
 			_dal.Update(_ent);
 		}
 	}

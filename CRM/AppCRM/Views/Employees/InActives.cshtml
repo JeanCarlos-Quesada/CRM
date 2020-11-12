@@ -1,22 +1,22 @@
 ﻿﻿@using PagedList;
 @using PagedList.Mvc;
 
-@model  PagedList.IPagedList<DO.Objects.client>
+@model  PagedList.IPagedList<DO.Objects.employee>
 @{ 
     ViewBag.Title = "InActives";
-    String search = ViewBag.Search; 
+    String search = ViewBag.Search;
 }
 
 <div class="container-main shadow">
     <div class="ml-4 mr-4">
-        <h3 class="titleView">List of Inactives Clients</h3>
+        <h3 class="titleView">List of Inactives Emploeyees</h3>
         @using (Html.BeginForm())
         {
             <div class="input-group mb-3 inputSearch">
                 <input type="text" name="Search" class="form-control" placeholder="Search">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Go</button>
-                    <a href="/Clients/InActives" class="btn btn-primary ml-1"><i class="fas fa-trash-alt"></i></a>
+                    <a href="/Employees/InActives" class="btn btn-primary ml-1"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
         }
@@ -37,19 +37,21 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th scope="row">@item.clientId</th>
-                            <td>@item.clientName</td>
+                            <th scope="row">@item.employeeId</th>
+                            <td>@item.employeeName</td>
                             <td>@item.phone</td>
                             <td>@item.email</td>
                             <td>@item.gender</td>
                             <td>@item.registerDate.ToString("MM/dd/yyyy")</td>
-                            <td><a href="/Clients/Active?id=@item.clientId"><i class="fas fa-user-plus tableIcon"></i></a></td>
+                            <td><a href="/Employees/Active?id=@item.employeeId"><i class="fas fa-user-plus tableIcon"></i></a></td>
                         </tr>
-                       }
+                    }
                 </tbody>
             </table>
             @Html.PagedListPager(Model, page => Url.Action("InActives", new { search, page }))
         </div>
-        @Html.ActionLink("Active clients", "Index", "Client", new { @class = "btn btn-primary aButton" })
+        @Html.ActionLink("Active clients", "Index", "Employees", new { @class = "btn btn-primary aButton" })
     </div>
 </div>
+
+

@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ICRUD.cs" />
-    <Compile Include="Objects\clients.cs" />
+    <Compile Include="Objects\client.cs" />
+    <Compile Include="Objects\employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

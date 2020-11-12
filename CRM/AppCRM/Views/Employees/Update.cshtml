@@ -1,17 +1,17 @@
-﻿@model DO.Objects.client
-@{ 
+﻿@model DO.Objects.employee
+@{
     ViewBag.Title = "Update";
 }
 
 <div class="container-main shadow">
     <div class="ml-4 mr-4">
         <h3 class="titleView">Update Client</h3>
-        @using (Html.BeginForm(new { id = Model.clientId }))
+        @using (Html.BeginForm(new { id = Model.employeeId }))
         {
             <div>
                 <div class="form-group">
                     <label for="clientName">Full Name</label>
-                    @Html.TextBoxFor(m => m.clientName, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.employeeName, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
@@ -31,25 +31,25 @@
                         @switch (Model.gender)
                         {
                             case "U":
-                               <option value="U" selected>Undefined</option>
-                               <option value="M">Masculine</option>
-                               <option value="F">Female</option>
-                               break;
+                                <option value="U" selected>Undefined</option>
+                                <option value="M">Masculine</option>
+                                <option value="F">Female</option>
+                                break;
                             case "M":
                                 <option value="U">Undefined</option>
                                 <option value="M" selected>Masculine</option>
                                 <option value="F">Female</option>
                                 break;
                             case "F":
-                                 <option value="U">Undefined</option>
-                                 <option value="M">Masculine</option>
-                                 <option value="F" selected>Female</option>
+                                <option value="U">Undefined</option>
+                                <option value="M">Masculine</option>
+                                <option value="F" selected>Female</option>
                                 break;
                         }
                     </select>
                 </div>
                 <input type="submit" value="Update" class="btn btn-primary" />
-                @Html.ActionLink("Cancel", "Index", "Client", new { @class = "btn btn-primary aButton" })
+                @Html.ActionLink("Cancel", "Index", "Employees", new { @class = "btn btn-primary aButton" })
             </div>
         }
     </div>
@@ -59,4 +59,6 @@
 <script>
     $(document).ready(function () {
         $('.custom-select').select2();
-    });</script>
+    });
+</script>
+

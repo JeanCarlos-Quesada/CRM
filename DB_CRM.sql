@@ -8,7 +8,8 @@ create table clients(
 	phone varchar(15) not null,
 	email varchar(50),
 	gender char, -- M(Male) F(Female) N(No Definite)
-	registerDate Datetime not null
+	registerDate Datetime not null,
+	isActive bit not null
 );
 
 create table employees(
@@ -17,7 +18,8 @@ create table employees(
 	phone varchar(15) not null,
 	email varchar(50) not null,
 	gender char, -- M(Male) F(Female) N(No Definite)
-	registerDate Datetime not null
+	registerDate Datetime not null,
+	isActive bit not null
 );
 
 create table users(
