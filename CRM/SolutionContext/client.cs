@@ -25,8 +25,7 @@ namespace DAL.EF
         public string phone { get; set; }
         public string email { get; set; }
         public string gender { get; set; }
-        public Nullable<System.DateTime> registerDate { get; set; }
-        public bool isActive { get; set; }
+        public System.DateTime registerDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }

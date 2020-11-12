@@ -61,11 +61,7 @@ namespace Repository
 		{
 			try
 			{
-				if (dbContext.Entry<Entity>(entity).State == EntityState.Detached)
-				{
-					dbContext.Set<Entity>().Attach(entity);
-				}
-				dbContext.Entry<Entity>(entity).State = EntityState.Modified;
+				dbContext.Set<Entity>().Attach(entity);
 				Commit();
 			}
 			catch (Exception ex)
