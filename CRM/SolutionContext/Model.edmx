@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categorys">
           <Key>
             <PropertyRef Name="id" />
@@ -21,7 +21,8 @@
           <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="gender" Type="char" MaxLength="1" />
-          <Property Name="registerDate" Type="datetime" Nullable="false" />
+          <Property Name="registerDate" Type="date" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
@@ -279,8 +280,7 @@ warning 6002: The table/view 'DB_CRM.dbo.orderFollows' does not have a primary k
             <End Role="users_X_rols" EntitySet="users_X_rols" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -301,8 +301,9 @@ warning 6002: The table/view 'DB_CRM.dbo.orderFollows' does not have a primary k
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="registerDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="orders" Relationship="Self.FK__orders__clintID__37A5467C" FromRole="clients" ToRole="orders" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
@@ -542,6 +543,7 @@ warning 6002: The table/view 'DB_CRM.dbo.orderFollows' does not have a primary k
           <EntitySetMapping Name="clients">
             <EntityTypeMapping TypeName="DB_CRMModel.client">
               <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="clientId" ColumnName="clientId" />
                 <ScalarProperty Name="clientName" ColumnName="clientName" />
                 <ScalarProperty Name="phone" ColumnName="phone" />

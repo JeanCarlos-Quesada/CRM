@@ -24,9 +24,29 @@ namespace DAL
 			return _repository.GetAll();
 		}
 
+		public IEnumerable<client> GetAll(Boolean isActive)
+		{
+			return _repository.AsQueryble().Where(x => x.isActive == isActive);
+		}
+
 		public client GetOneById(long id)
 		{
 			return _repository.GetOneById(id);
+		}
+
+		public IEnumerable<client> GetByNameOrId(String search, Boolean isActive)
+		{
+			long searchId = -1;
+			try
+			{
+				searchId = Int64.Parse(search);
+			}
+			catch(Exception ex)
+			{
+
+			}
+
+			return _repository.AsQueryble().Where(x => (x.clientName.Contains(search) || x.clientId == searchId) && x.isActive == isActive);
 		}
 
 		public void Insert(client entity)

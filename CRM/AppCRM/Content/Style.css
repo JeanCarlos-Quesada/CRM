@@ -1,0 +1,113 @@
+﻿body {
+    background-color: #F3F3FB;
+}
+
+/*navBar*/
+.navbar {
+    background-color: #0c4494 !important;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-nav li:hover .dropdown-menu {
+    position: center;
+    display: block;
+}
+
+.navbar-toggler {
+    border:unset !important;
+}
+
+
+/*background color for div container*/
+.container-main {
+    background-color: white;
+    height: 700px;
+    border-radius: 20px;
+}
+
+.shadow {
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 5px 6px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+
+/*button*/
+.btn-primary {
+    background-color: #0c4494 !important;
+    border-color: #0c4494 !important;
+}
+
+    .btn-primary:hover {
+        background-color: #0b397a !important;
+        border-color: #0b397a !important;
+    }
+
+
+.aButton {
+    color: white;
+}
+
+    .aButton:hover {
+        color: white;
+        text-decoration: none;
+    }
+
+/*icon*/
+.tableIcon {
+    color: #0c4494 !important;
+}
+
+    .tableIcon:hover {
+        color: #1953a6 !important;
+    }
+
+/*table*/
+.thead-blue {
+    background-color: #1953a6;
+    color: white;
+}
+
+tr {
+    text-align: center;
+}
+
+.inputSearch{
+    width: 30%;
+}
+
+/*Select2*/
+.select2-selection {
+    height: 37px !important;
+}
+
+.select2-selection__arrow {
+    height: 37px !important;
+}
+
+.select2-selection__rendered{
+    margin-top: 4px !important;
+}
+
+
+.titleView {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.profileLeft{
+    margin-right: 5%;
+}
+
