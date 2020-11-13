@@ -2,6 +2,45 @@
     background-color: #F3F3FB;
 }
 
+/*Sing In*/
+.singIn {
+    margin-top: 130px;
+    width: 500px;
+    height: 30% !important;
+}
+
+    .singIn > .container-main {
+        padding: 50px 30px 50px 30px
+    }
+
+    .singIn > .shadow {
+        -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
+        box-shadow: 3px 3px 5px 6px #000133; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+    }
+
+.input-group-text {
+    background-color: white !important;
+    border: none !important;
+}
+
+.inputSingIn {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+    .inputSingIn:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+@media (max-height: 900px){
+    .singIn {
+        margin-top: 50px;
+    }
+}
+
 /*navBar*/
 .navbar {
     background-color: #0c4494 !important;

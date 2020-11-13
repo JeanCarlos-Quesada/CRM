@@ -248,6 +248,15 @@
                         <option value="F">Female</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="clientName">Rols</label>
+                    <br />
+                    @Html.CheckBox("isAdmin")
+                    <label for="clientName">Administrador</label>
+                    <br />
+                    @Html.CheckBox("isSeller")
+                    <label for="clientName">Seller</label>
+                </div>
                 <input type="submit" value="Create" class="btn btn-primary" />
                 @Html.ActionLink("Cancel", "Index", "Employees", new { @class = "btn btn-primary aButton" })
             </div>

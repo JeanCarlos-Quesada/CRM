@@ -20,6 +20,18 @@ namespace Maps
 
                 cfg.CreateMap<ent.employee, data.employee>();
                 cfg.CreateMap<data.employee, ent.employee>();
+
+                cfg.CreateMap<ent.user, data.user>();
+                cfg.CreateMap<data.user, ent.user>();
+
+                cfg.CreateMap<ent.users_X_rols, data.user_x_rols>();
+                cfg.CreateMap<data.user_x_rols, ent.users_X_rols>();
+
+                cfg.CreateMap<ent.rol, data.rol>();
+                cfg.CreateMap<data.rol, ent.rol>();
+
+                cfg.CreateMap<ent.key, data.key>();
+                cfg.CreateMap<data.key, ent.key>();
             });
         }
     }

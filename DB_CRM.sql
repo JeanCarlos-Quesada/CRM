@@ -31,7 +31,7 @@ create table users(
 
 create table rols(
 	rolId tinyint primary key identity not null,
-	rolName varchar(20) not null  
+	rolName varchar(20) not null
 );
 
 create table users_X_rols(
@@ -81,3 +81,7 @@ create table orderFollows(
 );
 
 insert into rols values('Administrator'),('Seller');
+
+
+select * from users;
+select * from users_X_rols;

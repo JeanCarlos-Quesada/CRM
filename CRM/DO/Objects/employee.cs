@@ -17,6 +17,6 @@ namespace DO.Objects
         public bool isActive { get; set; }
 
         //public virtual ICollection<order> orders { get; set; }
-        //public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<user> users { get; set; }
     }
 }

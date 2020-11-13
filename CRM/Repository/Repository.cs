@@ -71,12 +71,12 @@ namespace Repository
 		{
 			try
 			{
-				dbContext.Set<Entity>().Remove(entity);
+				dbContext.Entry<Entity>(entity).State = EntityState.Deleted;
 				Commit();
 			}
 			catch (Exception ex)
 			{
-				dbContext.Database.CurrentTransaction.Rollback();
+				dbContext.Entry<Entity>(entity).State = EntityState.Unchanged;
 			}
 		}
 	}

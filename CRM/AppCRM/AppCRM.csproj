@@ -1778,6 +1778,7 @@
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\userIcon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\Style.css" />
@@ -1871,8 +1872,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\Clients\InActives.cshtml" />
@@ -1882,6 +1881,7 @@
     <Content Include="Views\Employees\Register.cshtml" />
     <Content Include="Views\Employees\InActives.cshtml" />
     <Content Include="Views\Employees\Update.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,17 +13,15 @@ namespace AppCRM.Controllers
 			return View();
 		}
 
-		public ActionResult About()
+		//SingIn
+		[HttpPost]
+		public ActionResult Index(String userName, String password)
 		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			return RedirectToAction("Home");
 		}
 
-		public ActionResult Contact()
+		public ActionResult Home()
 		{
-			ViewBag.Message = "Your contact page.";
-
 			return View();
 		}
 	}

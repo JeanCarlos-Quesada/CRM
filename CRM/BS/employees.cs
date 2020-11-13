@@ -53,6 +53,14 @@ namespace BS
 			return _ent;
 		}
 
+		public ent.employee GetLastOrDefault()
+		{
+			var data = _dal.GetLastOrDefault();
+			var _ent = Mapper.Map<data.employee, ent.employee>(data);
+
+			return _ent;
+		}
+		
 		public void Insert(ent.employee entity)
 		{
 			var _ent = Mapper.Map<ent.employee, data.employee>(entity);

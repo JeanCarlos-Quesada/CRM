@@ -46,6 +46,11 @@ namespace DAL
 			return _repository.GetOneById(id);
 		}
 
+		public employee GetLastOrDefault()
+		{
+			return _repository.GetAll().LastOrDefault();
+		}
+
 		public void Insert(employee entity)
 		{
 			_repository.Insert(entity);
