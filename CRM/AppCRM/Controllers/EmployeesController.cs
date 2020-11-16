@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using data = DO.Objects;
 
@@ -13,48 +14,90 @@ namespace AppCRM.Controllers
     public class EmployeesController : Controller
     {
 		private employees _employees = new employees();
-        
+        //var employeeId = Int64.Parse(Session["employeeId"].ToString());
         public ActionResult Index(String search, int page = 1)
         {
-            IEnumerable<data.employee> listEmployees = null;
+            var rols = (byte[])Session["rols"];
 
-            if (search == "" || search == null)
+            if (rols == null) //redirect to SinIn
             {
-                listEmployees = _employees.GetAll(true);
+                return RedirectToAction("Index", "Home");
             }
-            else
+            else if (rols.Contains<byte>(1)) 
             {
-                listEmployees = _employees.GetByNameOrId(search, true);
+                IEnumerable<data.employee> listEmployees = null;
+
+                if (search == "" || search == null)
+                {
+                    listEmployees = _employees.GetAll(true);
+                }
+                else
+                {
+                    listEmployees = _employees.GetByNameOrId(search, true);
+                }
+
+                ViewBag.Search = search;
+
+                var employeeId = Int64.Parse(Session["employeeId"].ToString());
+                ViewBag.EmployeeId = employeeId;
+
+                PagedList<data.employee> model = new PagedList<data.employee>(listEmployees, page, 8);
+                return View(model);
+			}
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
             }
-
-            ViewBag.Search = search;
-
-            PagedList<data.employee> model = new PagedList<data.employee>(listEmployees, page, 8);
-            return View(model);
         }
 
         public ActionResult InActives(String search, int page = 1)
         {
-            IEnumerable<data.employee> listEmployees = null;
+            var rols = (byte[])Session["rols"];
 
-            if (search == "" || search == null)
+            if (rols == null) //redirect to SinIn
             {
-                listEmployees = _employees.GetAll(false);
+                return RedirectToAction("Index", "Home");
             }
-            else
+            else if (rols.Contains<byte>(1))
             {
-                listEmployees = _employees.GetByNameOrId(search, false);
+                IEnumerable<data.employee> listEmployees = null;
+
+                if (search == "" || search == null)
+                {
+                    listEmployees = _employees.GetAll(false);
+                }
+                else
+                {
+                    listEmployees = _employees.GetByNameOrId(search, false);
+                }
+
+                ViewBag.Search = search;
+
+                PagedList<data.employee> model = new PagedList<data.employee>(listEmployees, page, 8);
+                return View(model);
             }
-
-            ViewBag.Search = search;
-
-            PagedList<data.employee> model = new PagedList<data.employee>(listEmployees, page, 8);
-            return View(model);
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         public ActionResult Register()
         {
-            return View();
+            var rols = (byte[])Session["rols"];
+
+            if (rols == null) //redirect to SinIn
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if (rols.Contains<byte>(1))
+            {
+                return View();
+            }
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         [HttpPost]
@@ -78,9 +121,13 @@ namespace AppCRM.Controllers
             data.user user = new data.user();
             users _user = new users();
 
+            var dateTime = DateTime.Now;
+            String userName = CreatePassword(3)+dateTime.Day+ dateTime.Month+ dateTime.Second;
+            String password = CreatePassword(6);
             user.employeeId = _employees.GetLastOrDefault().employeeId;
-            user.userName = aes.Encriptar(CreatePassword(6), key.C_Key, key.C_IV);
-            user.userPassword = aes.Encriptar(CreatePassword(6), key.C_Key, key.C_IV);
+            user.userName = aes.Encriptar(userName, key.C_Key, key.C_IV);
+            user.userPassword = aes.Encriptar(password, key.C_Key, key.C_IV);
+            user.expireDate = DateTime.Now.AddDays(1);
             _user.Insert(user);
 
             //add rols
@@ -105,16 +152,34 @@ namespace AppCRM.Controllers
             }
             #endregion user
 
+            //send email with the credentials
+            String from = WebConfigurationManager.AppSettings["email"];
+            String fromPassword = WebConfigurationManager.AppSettings["password"];
+            data.sendEmail.sendEmailOutlook(from, fromPassword, employee.email, "", "Credentials CRM", "Credentials for CRM:\nUser Name: " + userName + "\nPassword: " + password);
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Update(long id)
         {
-            var employee = _employees.GetOneById(id);
+            var rols = (byte[])Session["rols"];
 
-            users_x_rols _users_x_rols = new users_x_rols();
-            ViewBag.rols = _users_x_rols.GetAllByUserId(employee.users.FirstOrDefault().userId);
-            return View(employee);
+            if (rols == null) //redirect to SinIn
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if (rols.Contains<byte>(1))
+            {
+                var employee = _employees.GetOneById(id);
+
+                users_x_rols _users_x_rols = new users_x_rols();
+                ViewBag.rols = _users_x_rols.GetAllByUserId(employee.users.FirstOrDefault().userId);
+                return View(employee);
+            }
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         [HttpPost]

@@ -26,7 +26,8 @@ create table users(
 	userId bigint primary key identity not null,
 	employeeId bigint foreign key references employees(employeeId) not null,
 	userName varbinary(max) not null,
-	userPassword varbinary(max) not null
+	userPassword varbinary(max) not null,
+	expireDate datetime
 );
 
 create table rols(
@@ -81,7 +82,3 @@ create table orderFollows(
 );
 
 insert into rols values('Administrator'),('Seller');
-
-
-select * from users;
-select * from users_X_rols;

@@ -24,6 +24,7 @@ namespace CreateKeys
         public long employeeId { get; set; }
         public byte[] userName { get; set; }
         public byte[] userPassword { get; set; }
+        public Nullable<System.DateTime> expireDate { get; set; }
     
         public virtual employee employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

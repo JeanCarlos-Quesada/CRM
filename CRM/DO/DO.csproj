@@ -47,6 +47,7 @@
     <Compile Include="Objects\employee.cs" />
     <Compile Include="Objects\key.cs" />
     <Compile Include="Objects\rol.cs" />
+    <Compile Include="Objects\sendEmail.cs" />
     <Compile Include="Objects\user_x_rols.cs" />
     <Compile Include="Objects\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

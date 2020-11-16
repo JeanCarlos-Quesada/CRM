@@ -16,45 +16,84 @@ namespace AppCRM.Controllers
 
         public ActionResult Index(String search, int page = 1)
         {
-            IEnumerable<data.client> listClients = null;
+            var rols = (byte[])Session["rols"];
 
-            if (search == "" || search == null)
+            if (rols == null) //redirect to SinIn
             {
-                listClients = _clients.GetAll(true);
+                return RedirectToAction("Index", "Home");
             }
-            else
+            else if (rols.Contains<byte>(2))
             {
-                listClients = _clients.GetByNameOrId(search, true);
+                IEnumerable<data.client> listClients = null;
+
+                if (search == "" || search == null)
+                {
+                    listClients = _clients.GetAll(true);
+                }
+                else
+                {
+                    listClients = _clients.GetByNameOrId(search, true);
+                }
+
+                ViewBag.Search = search;
+
+                PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
+                return View(model);
             }
-
-            ViewBag.Search = search;
-
-            PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
-            return View(model);
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         public ActionResult InActives(String search, int page = 1)
         {
-            IEnumerable<data.client> listClients = null;
+            var rols = (byte[])Session["rols"];
 
-            if (search == "" || search == null)
+            if (rols == null) //redirect to SinIn
             {
-                listClients = _clients.GetAll(false);
+                return RedirectToAction("Index", "Home");
             }
-            else
+            else if (rols.Contains<byte>(2))
             {
-                listClients = _clients.GetByNameOrId(search, false);
+                IEnumerable<data.client> listClients = null;
+
+                if (search == "" || search == null)
+                {
+                    listClients = _clients.GetAll(false);
+                }
+                else
+                {
+                    listClients = _clients.GetByNameOrId(search, false);
+                }
+
+                ViewBag.Search = search;
+
+                PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
+                return View(model);
             }
-
-            ViewBag.Search = search;
-
-            PagedList<data.client> model = new PagedList<data.client>(listClients, page, 8);
-            return View(model);
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         public ActionResult Register()
         {
-            return View();
+            var rols = (byte[])Session["rols"];
+
+            if (rols == null) //redirect to SinIn
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if (rols.Contains<byte>(2))
+            {
+                return View();
+            }
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         [HttpPost]
@@ -69,8 +108,21 @@ namespace AppCRM.Controllers
 
         public ActionResult Update(long id)
         {
-            var client = _clients.GetOneById(id);
-            return View(client);
+            var rols = (byte[])Session["rols"];
+
+            if (rols == null) //redirect to SinIn
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if (rols.Contains<byte>(2))
+            {
+                var client = _clients.GetOneById(id);
+                return View(client);
+            }
+            else//redirect to Home
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@
           <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="gender" Type="char" MaxLength="1" />
-          <Property Name="registerDate" Type="datetime" Nullable="false" />
+          <Property Name="registerDate" Type="date" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="keys">
@@ -33,6 +33,7 @@
           <Property Name="employeeId" Type="bigint" Nullable="false" />
           <Property Name="userName" Type="varbinary(max)" Nullable="false" />
           <Property Name="userPassword" Type="varbinary(max)" Nullable="false" />
+          <Property Name="expireDate" Type="datetime" />
         </EntityType>
         <EntityType Name="users_X_rols">
           <Key>
@@ -93,7 +94,7 @@
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="registerDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="users" Relationship="DB_CRMModel.FK__users__employeeI__286302EC" FromRole="employee" ToRole="user" />
         </EntityType>
@@ -129,6 +130,7 @@
           <Property Name="userPassword" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="employee" Relationship="DB_CRMModel.FK__users__employeeI__286302EC" FromRole="user" ToRole="employee" />
           <NavigationProperty Name="users_X_rols" Relationship="DB_CRMModel.FK__users_X_r__userI__2E1BDC42" FromRole="user" ToRole="users_X_rols" />
+          <Property Name="expireDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="users_X_rols">
           <Key>
@@ -194,6 +196,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="DB_CRMModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
                 <ScalarProperty Name="userPassword" ColumnName="userPassword" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />

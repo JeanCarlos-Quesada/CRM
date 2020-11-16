@@ -12,7 +12,7 @@ namespace DO.Objects
         public byte rolId { get; set; }
         public long userId { get; set; }
 
-        //public virtual rol rol { get; set; }
-        //public virtual user user { get; set; }
+        public virtual rol rol { get; set; }
+        public virtual user user { get; set; }
     }
 }

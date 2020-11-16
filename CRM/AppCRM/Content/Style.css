@@ -28,14 +28,20 @@
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
+    border-radius: 0px !important;
 }
 
     .inputSingIn:focus {
         -webkit-box-shadow: none;
         box-shadow: none;
+        border-bottom-color: #0c4494 !important;
     }
 
-@media (max-height: 900px){
+.btn-SingIn{
+    width: 100px;
+}
+
+@media (max-height: 900px) {
     .singIn {
         margin-top: 50px;
     }

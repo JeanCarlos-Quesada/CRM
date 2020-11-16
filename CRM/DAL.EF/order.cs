@@ -25,7 +25,7 @@ namespace DAL.EF
         public long clintID { get; set; }
         public long employeeId { get; set; }
         public System.DateTime registerDate { get; set; }
-        public bool status { get; set; }
+        public byte status { get; set; }
     
         public virtual client client { get; set; }
         public virtual employee employee { get; set; }

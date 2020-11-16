@@ -34,6 +34,16 @@ namespace DAL
 			return _repository.AsQueryble().Where(x => x.employeeId == employeeId).FirstOrDefault();
 		}
 
+		public Boolean PasswordExist(byte[] password, long employeeId)
+		{
+			return _repository.AsQueryble().Where(x => x.userPassword == password && x.employeeId == employeeId).Count() != 0;
+		}
+
+		public Boolean UserNameExist(byte[] userName)
+		{
+			return _repository.AsQueryble().Where(x => x.userName == userName).Count() != 0;
+		}
+
 		public user GetLastOrDefault()
 		{
 			return _repository.GetAll().LastOrDefault();

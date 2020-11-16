@@ -61,6 +61,14 @@ namespace BS
 			return _ent;
 		}
 		
+		public ent.employee SingIn(byte[] userName, byte[] password)
+		{
+			var data = _dal.SingIn(userName, password);
+			var _ent = Mapper.Map<data.employee, ent.employee>(data);
+
+			return _ent;
+		}
+
 		public void Insert(ent.employee entity)
 		{
 			var _ent = Mapper.Map<ent.employee, data.employee>(entity);

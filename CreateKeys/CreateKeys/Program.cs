@@ -35,6 +35,7 @@ namespace CreateKeys
             user.employeeId = 1;
             user.userName = Encriptar("admin", C_Key, C_IV);
             user.userPassword = Encriptar("root", C_Key, C_IV);
+            user.expireDate = null;
 
             users_X_rols users_X_Rols = new users_X_rols();
             users_X_Rols.rolId = 1;

@@ -3,6 +3,7 @@ using DAL.Interfaces;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,12 @@ namespace DAL
 		public employee GetLastOrDefault()
 		{
 			return _repository.GetAll().LastOrDefault();
+		}
+
+
+		public employee SingIn(byte[] userName, byte[] password)
+		{
+			return _repository.AsQueryble().Where(x => x.users.Where(y => y.userName == userName && y.userPassword == password).Count() != 0 && x.isActive == true).FirstOrDefault();
 		}
 
 		public void Insert(employee entity)

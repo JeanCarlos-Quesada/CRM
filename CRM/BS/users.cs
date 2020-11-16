@@ -44,7 +44,17 @@ namespace BS
 
 			return _ent;
 		}
-		
+
+		public Boolean PasswordExist(byte[] password, long employeeId)
+		{
+			return _dal.PasswordExist(password, employeeId);
+		}
+
+		public Boolean UserNameExist(byte[] userName)
+		{
+			return _dal.UserNameExist(userName);
+		}
+
 		public ent.user GetLastOrDefault()
 		{
 			var data = _dal.GetLastOrDefault();
