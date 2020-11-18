@@ -51,9 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="categories.cs" />
     <Compile Include="clients.cs" />
     <Compile Include="employees.cs" />
     <Compile Include="keys.cs" />
+    <Compile Include="products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="users_x_rols.cs" />
     <Compile Include="users.cs" />

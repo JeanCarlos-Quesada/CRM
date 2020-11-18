@@ -32,6 +32,12 @@ namespace Maps
 
                 cfg.CreateMap<ent.key, data.key>();
                 cfg.CreateMap<data.key, ent.key>();
+
+                cfg.CreateMap<ent.category, data.category>();
+                cfg.CreateMap<data.category, ent.category>();
+
+                cfg.CreateMap<ent.product, data.product>();
+                cfg.CreateMap<data.product, ent.product>();
             });
         }
     }

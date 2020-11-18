@@ -91,9 +91,11 @@ function showMenuProducts() {
         '<li class="nav-item dropdown">' +
         '<a class="nav-link">Products</a>' +
         '<div class="dropdown-menu dropdown-menu-right   " aria-labelledby="navbarDropdown">' +
-        '<a href="/Clients/Index" class="dropdown-item">List of Products</a>' +
+        '<a href="/Products/Index" class="dropdown-item">List of Products</a>' +
         '<div class="dropdown-divider"></div>' +
-        '<a href="/Clients/Index" class="dropdown-item">Register Product</a>' +
+        '<a href="/Products/Register" class="dropdown-item">Register Product</a>' +
+        '<div class="dropdown-divider"></div>' +
+        '<a href="/Categories/Register" class="dropdown-item">Register Category</a>' +
         '</div>' +
         '</li>'
     )

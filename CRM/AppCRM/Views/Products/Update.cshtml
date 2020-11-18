@@ -1,0 +1,43 @@
+﻿﻿@model DO.Objects.product
+@{ 
+    ViewBag.Title = "Update";
+    IEnumerable<DO.Objects.category> categories = ViewBag.Categories;
+}
+
+<div class="container-main shadow">
+    <div class="ml-4 mr-4">
+        <h3 class="titleView">Update Product</h3>
+        @using (Html.BeginForm())
+        {
+        <div>
+            <div class="form-group">
+                <label for="clientName">Full Name</label>
+                @Html.TextBoxFor(m => m.productName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="clientName">Price</label>
+                @Html.TextBoxFor(m => m.price, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="clientName">Actual Category</label>
+                @Html.TextBoxFor(m => m.category.categoryName, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group">
+                <label for="clientName">Category</label>
+                @Html.DropDownListFor(m => m.categoryId, new SelectList(categories, "id", "categoryName"), "--Select--", new { @class= "custom-select", @id ="category"})
+            </div>
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", "Employees", new { @class = "btn btn-primary aButton" })
+        </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#category').prop('selectedIndex', 0);
+        $('.custom-select').select2();
+    });
+</script>
+
+

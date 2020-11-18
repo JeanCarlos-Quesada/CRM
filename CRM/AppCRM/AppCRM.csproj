@@ -135,9 +135,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1852,6 +1854,7 @@
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\categories.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -1863,6 +1866,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\products.js" />
     <Content Include="Scripts\profile.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\sweetAlert\dist\sweetalert2.all.js" />
@@ -1969,6 +1973,11 @@
     <Content Include="Scripts\sweetAlert\src\scss\_toasts.scss" />
     <Content Include="Scripts\sweetAlert\src\sweetalert2.scss" />
     <Content Include="Scripts\sweetAlert\src\variables.scss" />
+    <Content Include="Views\Categories\Register.cshtml" />
+    <Content Include="Views\Categories\Update.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Register.cshtml" />
+    <Content Include="Views\Products\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

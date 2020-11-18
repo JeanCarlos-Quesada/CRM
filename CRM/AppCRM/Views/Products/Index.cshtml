@@ -1,0 +1,54 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model  PagedList.IPagedList<DO.Objects.product>
+@{ ViewBag.Title = "Index";
+                String search = ViewBag.Search; }
+
+<div class="container-main shadow">
+    <div class="ml-4 mr-4">
+        <h3 class="titleView">List of Products</h3>
+        @using (Html.BeginForm())
+        {
+            <div class="input-group mb-3 inputSearch">
+                <input type="text" name="search" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Go</button>
+                    <a href="/Products/Index" class="btn btn-primary ml-1"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+        }
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-blue">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Inventory</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Add Inventory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.productId</th>
+                            <td>@item.productName</td>
+                            <td>@item.inventory</td>
+                            <td>@item.price</td>
+                            <td>@item.category.categoryName</td>
+                            <td><a href="/Products/Update?id=@item.productId"><i class="far fa-edit tableIcon"></i></a></td>
+                            <td><a onclick="showAddInventory(@item.productId)"><i class="fas fa-plus tableIcon"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { search, page }))
+        </div>
+        @*@Html.ActionLink("Inactive clients", "Index", "Products", new { @class = "btn btn-primary aButton" })*@
+    </div>
+</div>
+@Scripts.Render("~/Scripts/products.js")
